@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProjectListScreen } from 'screens/project-list';
 import './App.css';
 
