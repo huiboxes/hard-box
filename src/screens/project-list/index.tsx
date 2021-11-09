@@ -8,13 +8,14 @@ import * as qs from 'qs'
 const apiUrl = process.env.REACT_APP_API_URL
 
 export const ProjectListScreen = () => {
+  const [users, setUsers] = useState([])
+
   const [param, setParam] = useState({
     name: '',
     personId: '',
   })
   const debouncedParam = useDebounce(param, 200)
   const [list, setList] = useState([])
-  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch(
