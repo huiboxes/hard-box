@@ -1,4 +1,4 @@
-export interface User{
+export interface User {
   id: string
   name: string
   email: string
@@ -20,7 +20,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
     <form>
       <div>
         <input
-          type="text"
+          type="search"
           value={param.name}
           onChange={(evt) =>
             setParam({

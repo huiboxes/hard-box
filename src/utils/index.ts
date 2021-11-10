@@ -17,7 +17,7 @@ export const cleanObject = (object: object) => {
   return result
 }
 
-export const useMount = (callback: ()=>void) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback()
   }, [])
