@@ -57,3 +57,5 @@ export const useDocumentTitle = (
     }
   })
 }
+
+export const resetRoute = () => (window.location.href = window.location.origin)

@@ -8,14 +8,13 @@ import { useAuth } from 'context/auth-context'
 import { ProjectListScreen } from 'screens/project-list'
 import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
 import { ProjectScreen } from 'screens/project'
+import { resetRoute } from 'utils'
 
 export const AuthenticatedApp = () => {
   return (
     <Container>
       <PageHeader />
       <Main>
-        <ProjectListScreen />
-
         <Router>
           <Routes>
             <Route path={'/projects'} element={<ProjectListScreen />} />
@@ -23,6 +22,7 @@ export const AuthenticatedApp = () => {
               path={'/projects/:projectId/*'}
               element={<ProjectScreen />}
             />
+            <Route index element={<ProjectScreen />} />
           </Routes>
         </Router>
       </Main>
@@ -35,7 +35,9 @@ const PageHeader = () => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <SoftwareLogo width={'18rem'} color={'rgb(38,132,255)'} />
+        <Button type={'link'} onClick={resetRoute}>
+          <SoftwareLogo width={'18rem'} color={'rgb(38,132,255)'} />
+        </Button>
         <HeaderItem>项目</HeaderItem>
         <HeaderItem>用户</HeaderItem>
       </HeaderLeft>
