@@ -1,5 +1,6 @@
 import { Table, TableProps } from 'antd'
 import dayjs from 'dayjs'
+import { Link } from 'react-router-dom'
 import { User } from 'screens/project-list/search-panel'
 
 export interface Project {
@@ -22,8 +23,12 @@ export const List = ({ users, ...props }: ListProps) => {
       columns={[
         {
           title: '名称',
-          dataIndex: 'name',
           sorter: (prev, next) => prev.name.localeCompare(next.name),
+          render(value, project) {
+            return (
+              <a href={'/projects/' + project.id.toString()}>{project.name}</a>
+            )
+          },
         },
         {
           title: '部门',
