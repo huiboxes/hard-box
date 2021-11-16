@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'components/error-boundary'
 import { FullPageErrorFallback } from 'components/lib'
 import { useAuth } from 'context/auth-context'
 import { UnauthenticatedApp } from 'unauthenticated-app'
+import './wdyr'
 import './App.css'
 
 function App() {
