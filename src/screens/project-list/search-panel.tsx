@@ -1,7 +1,9 @@
-import { Input, Select, Form } from 'antd'
+import { Input, Form } from 'antd'
+import { UserSelect } from 'components/user-select'
+import { Project } from './list'
 
 export interface User {
-  id: string
+  id: number
   name: string
   email: string
   title: string
@@ -11,20 +13,18 @@ export interface User {
 
 interface SearchPanelProps {
   users: User[]
-  param: {
-    name: string
-    personId: string
-  }
+  param: Partial<Pick<Project, 'name' | 'personId'>>
   setParam: (param: SearchPanelProps['param']) => void
 }
 
 export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
   return (
-    <Form layout={'inline'} style={{ marginBottom: '2rem' }}>
+    <Form style={{ marginBottom: '2rem' }} layout={'inline'}>
       <Form.Item>
+        {/*setParam(Object.assign({}, param, {name:evt.target.value}))*/}
         <Input
           placeholder={'项目名'}
-          type="search"
+          type="text"
           value={param.name}
           onChange={(evt) =>
             setParam({
@@ -35,7 +35,8 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
         />
       </Form.Item>
       <Form.Item>
-        <Select
+        <UserSelect
+          defaultOptionName={'负责人'}
           value={param.personId}
           onChange={(value) =>
             setParam({
@@ -43,14 +44,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
               personId: value,
             })
           }
-        >
-          <Select.Option value={''}>负责人</Select.Option>
-          {users.map((user) => (
-            <Select.Option value={String(user.id)} key={user.id}>
-              {user.name}
-            </Select.Option>
-          ))}
-        </Select>
+        />
       </Form.Item>
     </Form>
   )
